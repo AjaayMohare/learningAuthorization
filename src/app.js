@@ -1,11 +1,13 @@
 const express = require("express");
-const loginRoutes = require("../routes/loginRoutes");
+const cookieParser = require("cookie-parser");
 
 const app = express();
-app.use(express.json());
+
+const authRouter = require("../routes/authRoutes");
+
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use("/", loginRoutes);
-
+app.use("/api/auth", authRouter);
 
 module.exports = app;
